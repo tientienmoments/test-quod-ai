@@ -1,0 +1,81 @@
+$textColor: white;
+
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  color: $textColor;
+  background-image: linear-gradient(
+    to bottom,
+    #68177b,
+    #751b8a,
+    #821e98,
+    #8f22a8,
+    #9c26b7
+  );
+  height: 5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-left: 7vw !important;
+  padding-right: 7vw !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navTitle {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 50px;
+  color: white;
+  margin-right: 10px;
+}
+.main-body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 92vh;
+  border: 1px solid red;
+}
+.bg-img {
+  height: 70vh;
+  transform: rotateY(180deg);
+  opacity: 0.5;
+  position: absolute;
+  z-index: 0;
+  bottom: 1rem;
+  left: 1rem;
+}
+.pagination-style {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .pagination {
+    margin-bottom: 0 !important;
+  }
+  .page-link {
+    color: #68177b !important;
+    border: none !important;
+    margin: 5px;
+    span {
+      font-size: 30px;
+    }
+  }
+}
+
+.issue-wrap {
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.active {
+  background-color: red;
+}
