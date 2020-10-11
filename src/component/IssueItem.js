@@ -14,7 +14,7 @@ const IssueItem = ({ issues }) => {
             return (
               <div className="issue-wrap" style={{ cursor: "pointer" }}>
                 <div className="issue-img-wrap">
-                  <img src={IssueImg} alt="issue-img" className="img-fluid" />
+                  <img src={IssueImg} alt="issue-img" />
                 </div>
                 <div
                   // key={item.id}
