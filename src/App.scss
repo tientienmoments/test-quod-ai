@@ -41,6 +41,7 @@ body {
   width: 100vw;
   height: 92vh;
   border: 1px solid red;
+  justify-content: center;
 }
 .bg-img {
   height: 70vh;
@@ -54,6 +55,7 @@ body {
 .pagination-style {
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-bottom: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,11 +73,31 @@ body {
 }
 
 .issue-wrap {
-  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.active {
+  background-color: #b27abe67;
+}
+.issue-img-wrap {
+  img {
+    height: 12vh;
+  }
+}
+.issue-detail {
+  border: 2px solid #8f22a8;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 50vw;
+  margin-left: 5px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-}
-.active {
-  background-color: red;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
 }

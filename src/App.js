@@ -55,7 +55,7 @@ function App() {
           <img src={Logo} className="logo" alt="icon" />
           Github Issues
         </div>
-        <i class="far fa-bell" style={{ fontSize: "35px" }}></i>
+        <i className="far fa-bell" style={{ fontSize: "35px" }}></i>
       </div>
       <div className="main-body">
         {errorMsg && (
