@@ -4,9 +4,11 @@ import GitPagination from "./component/GitPagination";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
-import { Alert } from "react-bootstrap";
+import { Alert, Dropdown } from "react-bootstrap";
 import Logo from "./images/git-icon.png";
 import Bg from "./images/quod-bg-1.png";
+import { useSelector, useDispatch } from "react-redux";
+import * as types from "./redux/constants/highlight.constant";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -14,6 +16,14 @@ function App() {
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(1);
   const [issues, setIssues] = useState("");
+
+  const dispatch = useDispatch();
+  const currHighlightedIssue = useSelector(
+    (state) => state.highlight.currHighlightedIssue
+  );
+  const highlightedIssues = useSelector(
+    (state) => state.highlight.highlightedIssues
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +33,7 @@ function App() {
           `https://api.github.com/repos/rails/rails/issues?page=${pageNum}&per_page=5`
         );
 
-        console.log("dataaaa", data);
+        console.log("data", data);
         if (data.status === 200) {
           const link = data.headers.link;
           if (link) {
@@ -39,7 +49,6 @@ function App() {
         }
         setIssues(data.data);
       }
-
       fetchData();
       return;
     } catch (error) {
@@ -48,6 +57,20 @@ function App() {
     setLoading(false);
   }, [pageNum]);
 
+  const handleClickOnIssue = (item) => {
+    if (item.id !== currHighlightedIssue) {
+      // Only 1 highlighted at a time
+      console.log({ id: item.id, currHighlightedIssue });
+      dispatch({ type: types.SET_CURRENT_HIGHLIGHTED_ISSUE, payload: item.id });
+    } else {
+      dispatch({ type: types.SET_CURRENT_HIGHLIGHTED_ISSUE, payload: null });
+    }
+    dispatch({
+      type: types.ADD_TO_HIGHLIGHT_LIST,
+      payload: { title: item.title, url: item.url },
+    });
+  };
+
   return (
     <div>
       <div className="navbar">
@@ -55,7 +78,31 @@ function App() {
           <img src={Logo} className="logo" alt="icon" />
           Github Issues
         </div>
-        <i className="far fa-bell" style={{ fontSize: "35px" }}></i>
+        <div className="noti-style">
+          <i className="far fa-bell" style={{ fontSize: "35px" }}></i>
+          <Dropdown>
+            <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+              {highlightedIssues.length}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <span style={{ marginLeft: "5px" }}>Recent history:</span>
+              {highlightedIssues.map((item) => {
+                return (
+                  <p>
+                    <Dropdown.Item
+                      style={{ textDecoration: "underline", color: "#68177b" }}
+                      onClick={() => window.open(`${item.url}`, "_blank")}
+                    >
+                      Issue: {item.title}
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
+                  </p>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </div>
       <div className="main-body">
         {errorMsg && (
@@ -73,9 +120,11 @@ function App() {
             totalPageNum={totalPageNum}
           />
         </div>
-
-        <IssueItem issues={issues} />
-
+        <IssueItem
+          issues={issues}
+          handleClickOnIssue={handleClickOnIssue}
+          currHighlightedIssue={currHighlightedIssue}
+        />
         <img src={Bg} alt="bground" className="bg-img" />
       </div>
     </div>
