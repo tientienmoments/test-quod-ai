@@ -41,6 +41,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .btn-outline-light {
   border: none !important;
   border-radius: 50px;
@@ -112,6 +113,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  word-break: break-all;
   align-items: center;
   justify-content: center;
   padding: 5px;

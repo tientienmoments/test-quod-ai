@@ -2,21 +2,19 @@ import React, { useState, useEffect } from "react";
 import IssueItem from "./component/IssueItem";
 import GitPagination from "./component/GitPagination";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import * as types from "./redux/constants/highlight.constant";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 import { Alert, Dropdown } from "react-bootstrap";
 import Logo from "./images/git-icon.png";
 import Bg from "./images/quod-bg-1.png";
-import { useSelector, useDispatch } from "react-redux";
-import * as types from "./redux/constants/highlight.constant";
 
 function App() {
-  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(1);
   const [issues, setIssues] = useState("");
-
   const dispatch = useDispatch();
   const currHighlightedIssue = useSelector(
     (state) => state.highlight.currHighlightedIssue
@@ -26,7 +24,6 @@ function App() {
   );
 
   useEffect(() => {
-    setLoading(true);
     try {
       async function fetchData() {
         const data = await axios(
@@ -54,7 +51,6 @@ function App() {
     } catch (error) {
       setErrorMsg(error.message);
     }
-    setLoading(false);
   }, [pageNum]);
 
   const handleClickOnIssue = (item) => {
@@ -89,7 +85,7 @@ function App() {
               <span style={{ marginLeft: "5px" }}>Recent history:</span>
               {highlightedIssues.map((item) => {
                 return (
-                  <p>
+                  <>
                     <Dropdown.Item
                       style={{ textDecoration: "underline", color: "#68177b" }}
                       onClick={() => window.open(`${item.url}`, "_blank")}
@@ -97,7 +93,7 @@ function App() {
                       Issue: {item.title}
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                  </p>
+                  </>
                 );
               })}
             </Dropdown.Menu>
