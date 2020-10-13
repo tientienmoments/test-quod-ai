@@ -41,6 +41,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+.dropdown-menu {
+  width: 50vw;
+}
+.dropdown-item {
+  max-width: 80vw;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
 
 .btn-outline-light {
   border: none !important;
@@ -57,8 +66,8 @@ body {
   justify-content: center;
   padding-top: 7vh;
 }
-.bg-img {
-  height: 70vh;
+.img-fluid {
+  width: 40% !important;
   transform: rotateY(180deg);
   opacity: 0.5;
   position: absolute;

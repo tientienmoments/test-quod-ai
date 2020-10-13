@@ -13,7 +13,7 @@ const IssueItem = ({ issues, handleClickOnIssue, currHighlightedIssue }) => {
               style={{ cursor: "pointer" }}
             >
               <div className="issue-img-wrap">
-                <img src={IssueImg} alt="issue-img" className="img-fluid" />
+                <img src={IssueImg} alt="issue-img" />
               </div>
               <div
                 className={

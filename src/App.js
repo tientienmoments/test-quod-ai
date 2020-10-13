@@ -85,15 +85,18 @@ function App() {
               <span style={{ marginLeft: "5px" }}>Recent history:</span>
               {highlightedIssues.map((item) => {
                 return (
-                  <>
+                  <div className="item-wrap">
                     <Dropdown.Item
-                      style={{ textDecoration: "underline", color: "#68177b" }}
+                      style={{
+                        textDecoration: "underline",
+                        color: "#68177b",
+                      }}
                       onClick={() => window.open(`${item.url}`, "_blank")}
                     >
                       Issue: {item.title}
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                  </>
+                  </div>
                 );
               })}
             </Dropdown.Menu>
@@ -121,7 +124,7 @@ function App() {
           handleClickOnIssue={handleClickOnIssue}
           currHighlightedIssue={currHighlightedIssue}
         />
-        <img src={Bg} alt="bground" className="bg-img" />
+        <img src={Bg} className="img-fluid" alt="Responsive image" />
       </div>
     </div>
   );
