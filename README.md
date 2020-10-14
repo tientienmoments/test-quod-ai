@@ -28,7 +28,7 @@ The app is running on <http://localhost:3000/>
   => I am using React Bootstrap and Sass for the styling. In my point of view, it is more convenient to arrange and manage the style.
 
 - How did you share state between components? What are the pros and cons? Why did you chose this approach?
-  For Example:
+  =>For Example:
   I am trying to save and sharing the issues state
   `const [issues, setIssues] = useState("");`
 
@@ -41,7 +41,7 @@ The app is running on <http://localhost:3000/>
 I am using lifting state up method from parent component to children component for more easily to control the data and logic.
 
 - Did you use React hooks? Why or why not?
-  Yes. I do. Such as: useState, useSelector, useDispatch, useEffect
+  => Yes. I do. Such as: useState, useSelector, useDispatch, useEffect
   Coz:
   - I am coding by functional component
   - Code is cleaner
@@ -51,8 +51,9 @@ I am using lifting state up method from parent component to children component f
 => Need to fetch the api in action if you need to expand the app
 
 - How did you prevent wasted renders?
-  useEffect: only re-render for the changing or updating part
+  => useEffect: only re-render for the changing or updating part
 - How did you handle side-effects (e.g. data fetching)? What are the pros and cons? Why did you chose this approach?
+  =>
 
 1. I fetched data using axios inside useEffect and update data every single time call api from github
 2. Using useState to save data
