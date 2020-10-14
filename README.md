@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Web app listed 5 github issues per page with forward and backward Pagination.
+User can be able to toggle the highlighted issues and see that as new feed notification in navbar and beside the highlight function, user also can move to next pagination pages and come back, they are still able to see which has already chosen.
+**DEMO**
+[Link](https://github-issues-test.netlify.app/)
 
-In the project directory, you can run:
+## Dependencies
 
-### `npm start`
+- react-bootrap : framework for styling
+- font-awesome: notification icon
+- axios: fetching Github's api
+- redux : to store the most recent 5 highlighted issue
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup and run app
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+git clone https://github.com/tientienmoments/test-quod-ai.git
+cd test-quod-ai
+npm install
+npm start
+The app is running on <http://localhost:3000/>
+```
 
-### `npm test`
+**Technical decision**
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- How did you implement styling? What are the pros and cons? Why did you chose this approach?
+  => I am using React Bootstrap and Sass for the styling. In my point of view, it is more convenient to arrange and manage the style.
 
-### `npm run build`
+- How did you share state between components? What are the pros and cons? Why did you chose this approach?
+  For Example:
+  I am trying to save and sharing the issues state
+  `const [issues, setIssues] = useState("");`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. I save all the data after fetching to `issues`
+   `setIssues(data.data);`
+2. Then, I share these data by change this state `issues` to become props
+   in `<IssueItem **issues={issues}** handleClickOnIssue={handleClickOnIssue} currHighlightedIssue={currHighlightedIssue} />`
+3. In the Issue component, I already have all the information ready use after mapping.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+I am using lifting state up method from parent component to children component for more easily to control the data and logic.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Did you use React hooks? Why or why not?
+  Yes. I do. Such as: useState, useSelector, useDispatch, useEffect
+  Coz:
+  - I am coding by functional component
+  - Code is cleaner
+  - Reuse the data and logic
+- What would you improve?
 
-### `npm run eject`
+=> Need to fetch the api in action if you need to expand the app
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- How did you prevent wasted renders?
+  useEffect: only re-render for the changing or updating part
+- How did you handle side-effects (e.g. data fetching)? What are the pros and cons? Why did you chose this approach?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. I fetched data using axios inside useEffect and update data every single time call api from github
+2. Using useState to save data
+3. And then display data

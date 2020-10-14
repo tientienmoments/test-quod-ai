@@ -1,4 +1,9 @@
 $textColor: white;
+%align-bothSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 body {
   background-color: white;
@@ -37,9 +42,7 @@ body {
 }
 .noti-style {
   width: 5vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %align-bothSide;
 }
 .dropdown-menu {
   width: 50vw;
@@ -78,9 +81,7 @@ body {
 .pagination-style {
   padding-top: 10px;
   padding-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %align-bothSide;
   .pagination {
     margin-bottom: 0 !important;
   }
@@ -95,11 +96,9 @@ body {
 }
 
 .issue-wrap {
-  display: flex;
+  @extend %align-bothSide;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 5px;
 }
 .active {
@@ -119,12 +118,10 @@ body {
   border-bottom-right-radius: 20px;
   width: 55vw;
   margin-left: 5px;
-  display: flex;
+  @extend %align-bothSide;
   flex-wrap: wrap;
   flex-direction: column;
   word-break: break-all;
-  align-items: center;
-  justify-content: center;
   padding: 5px;
 }
 

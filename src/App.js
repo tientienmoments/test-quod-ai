@@ -124,7 +124,7 @@ function App() {
           handleClickOnIssue={handleClickOnIssue}
           currHighlightedIssue={currHighlightedIssue}
         />
-        <img src={Bg} className="img-fluid" alt="Responsive image" />
+        <img src={Bg} className="img-fluid" alt="Responsive" />
       </div>
     </div>
   );
